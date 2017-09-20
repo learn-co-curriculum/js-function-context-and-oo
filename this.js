@@ -3,7 +3,8 @@
 // 'invocation context'
 
 // 1 - as a function, a basless function
-function thisLogger(){
+function thisLogger(name){
+  console.log(name)
   console.log(this)
 }
 
@@ -21,7 +22,41 @@ let obj = {
 // 3 - via call and apply (methods of the Function object)
 
 
+
 // 4 - as a constructor (bring us into OO Js)
+
+// function Dog(name, color) {
+//   this.name = name
+//   this.color = color
+// }
+//
+// Dog.prototype.bark = function(){
+//   console.log(`woof! my name is ${this.name}`)
+// }
+
+Dog.all = function(){/* */}
+
+class Dog {
+
+  constructor(name, color) {
+    this.name = name
+    this.color = color
+  }
+
+  bark() {
+    console.log(`woof! my name is ${this.name}`)
+  }
+  
+
+  static thisIsAClassMethod() {
+    return 'called on the class'
+  }
+}
+
+
+
+
+
 
 
 
@@ -40,10 +75,16 @@ let obj = {
 
 
 const listEmployees = function() {
-  console.log(this)
+
   thisLogger()
-  this.employees.forEach(function(employee) {
-    // Restaurant: T.G.I. Friday's, Employee: Alex
+  // let that = this;
+
+  // this.employees.forEach(function(employee) {
+  //   // Restaurant: T.G.I. Friday's, Employee: Alex
+  //   console.log(`Restaurant: ${this.name}, Employee: ${employee.name}`)
+  // }.bind(this))
+
+  this.employees.forEach((employee) => {
     console.log(`Restaurant: ${this.name}, Employee: ${employee.name}`)
   })
 }
